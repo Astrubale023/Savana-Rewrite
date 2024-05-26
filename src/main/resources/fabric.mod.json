@@ -3,13 +3,13 @@
 	"id": "savanar",
 	"version": "${version}",
 	"name": "Savana Rewrite",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A fabric mod to give new life to savana biome",
 	"authors": [
-		"Me!"
+		"Astrubale"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Astrubale023/Savana-Rewrite"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/savanar/icon.png",
@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"com.astrubale.savanar.SavanaRewrite"
+		],
+		"client": [
+			"com.astrubale.savanar.SavanaRewriteClient"
 		],
 		"fabric-datagen": [
 			"com.astrubale.savanar.SavanaRewriteDataGenerator"
