@@ -16,17 +16,17 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.astrubale.savanar.SavanaRewrite"
+			"com.astrubale.savanarewrite.SavanaRewrite"
 		],
 		"client": [
-			"com.astrubale.savanar.SavanaRewriteClient"
+			"com.astrubale.savanarewrite.SavanaRewriteClient"
 		],
 		"fabric-datagen": [
-			"com.astrubale.savanar.SavanaRewriteDataGenerator"
+			"com.astrubale.savanarewrite.SavanaRewriteDataGenerator"
 		]
 	},
 	"mixins": [
-		"savanar.mixins.json"
+		"savanarewrite.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
