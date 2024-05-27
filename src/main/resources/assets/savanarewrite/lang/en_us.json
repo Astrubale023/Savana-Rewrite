@@ -5,5 +5,9 @@
   "block.savanarewrite.baobab_wood": "Baobab Wood",
   "block.savanarewrite.stripped_baobab_log": "Stripped Baobab Log",
   "block.savanarewrite.stripped_baobab_wood": "Stripped Baobab Wood",
-  "block.savanarewrite.baobab_planks": "Baobab Planks"
+  "block.savanarewrite.baobab_planks": "Baobab Planks",
+
+  "block.savanarewrite.baobab_leaves": "Baobab Leaves",
+
+  "block.savanarewrite.baobab_sapling": "Baobab Sapling"
 }

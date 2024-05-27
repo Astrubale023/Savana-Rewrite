@@ -22,9 +22,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.STRIPPED_BAOBAB_WOOD);
                         entries.add(ModBlocks.BAOBAB_PLANKS);
                         entries.add(ModBlocks.BAOBAB_LEAVES);
-                        /*
-                        entries.add(ModBlocks.CHESTNUT_SAPLING);
-                         */
+                        entries.add(ModBlocks.BAOBAB_SAPLING);
 
 
                     }).build());
