@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SavanaRewrite implements ModInitializer {
-	public static final String MOD_ID = "savana_revenge";
+	public static final String MOD_ID = "savana_rewrite";
     public static final Logger LOGGER = LoggerFactory.getLogger("savanar");
 
 	@Override
