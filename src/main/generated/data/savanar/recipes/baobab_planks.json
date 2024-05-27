@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "savanarewrite:baobab_log"
+    }
+  },
+  "pattern": [
+    "L"
+  ],
+  "result": {
+    "count": 4,
+    "item": "savanarewrite:baobab_planks"
+  }
+}
