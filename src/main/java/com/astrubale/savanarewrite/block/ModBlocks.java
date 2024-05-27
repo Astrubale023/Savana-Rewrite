@@ -1,6 +1,6 @@
-package com.astrubale.savanar.block;
+package com.astrubale.savanarewrite.block;
 
-import com.astrubale.savanar.SavanaRewrite;
+import com.astrubale.savanarewrite.SavanaRewrite;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;

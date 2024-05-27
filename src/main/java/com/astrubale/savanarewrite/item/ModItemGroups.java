@@ -1,9 +1,7 @@
-package com.astrubale.savanar.item;
+package com.astrubale.savanarewrite.item;
 
-import com.astrubale.savanar.SavanaRewrite;
-import com.astrubale.savanar.block.ModBlocks;
-import net.astrubale.testmod.TestMod;
-import net.astrubale.testmod.block.ModBlocks;
+import com.astrubale.savanarewrite.SavanaRewrite;
+import com.astrubale.savanarewrite.block.ModBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -14,8 +12,8 @@ import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
     public static final ItemGroup WOODDERS_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(SavanaRewrite.MOD_ID, "savanar"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.savanar"))
+            new Identifier(SavanaRewrite.MOD_ID, "savanarewrite"),
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.savanarewrite"))
                     .icon(() -> new ItemStack(ModBlocks.BAOBAB_LOG.asItem())).entries((displayContext, entries) -> {
 
                         entries.add(ModBlocks.BAOBAB_LOG);

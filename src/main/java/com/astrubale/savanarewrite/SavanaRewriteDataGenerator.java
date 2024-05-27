@@ -1,4 +1,4 @@
-package com.astrubale.savanar;
+package com.astrubale.savanarewrite;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

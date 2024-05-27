@@ -1,4 +1,4 @@
-package com.astrubale.savanar;
+package com.astrubale.savanarewrite;
 
 import net.fabricmc.api.ClientModInitializer;
 

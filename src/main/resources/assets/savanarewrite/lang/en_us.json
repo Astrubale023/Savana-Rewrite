@@ -1,0 +1,9 @@
+{
+  "itemgroup.savanarewrite" : "Savana Rewrite Group",
+
+  "block.testmod.baobab_log": "Baobab Log",
+  "block.testmod.baobab_wood": "Baobab Wood",
+  "block.testmod.stripped_baobab_log": "Stripped Baobab Log",
+  "block.testmod.stripped_baobab_wood": "Stripped Baobab Wood",
+  "block.testmod.baobab_planks": "Baobab Planks"
+}
