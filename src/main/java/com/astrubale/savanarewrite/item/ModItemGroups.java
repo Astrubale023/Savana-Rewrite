@@ -11,7 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
-    public static final ItemGroup WOODDERS_GROUP = Registry.register(Registries.ITEM_GROUP,
+    public static final ItemGroup SAVANA_REWRITE_GROUP = Registry.register(Registries.ITEM_GROUP,
             new Identifier(SavanaRewrite.MOD_ID, "savanarewrite"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.savanarewrite"))
                     .icon(() -> new ItemStack(ModBlocks.BAOBAB_LOG.asItem())).entries((displayContext, entries) -> {
@@ -21,8 +21,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.STRIPPED_BAOBAB_LOG);
                         entries.add(ModBlocks.STRIPPED_BAOBAB_WOOD);
                         entries.add(ModBlocks.BAOBAB_PLANKS);
+                        entries.add(ModBlocks.BAOBAB_LEAVES);
                         /*
-                        entries.add(ModBlocks.CHESTNUT_LEAVES);
                         entries.add(ModBlocks.CHESTNUT_SAPLING);
                          */
 

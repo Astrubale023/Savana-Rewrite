@@ -23,10 +23,9 @@ public class ModBlocks {
 
     public static final Block BAOBAB_PLANKS = registerBlock("baobab_planks",
             new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).strength(4f)));
-/*
-    public static final Block CHESTNUT_LEAVES = registerBlock("chestnut_leaves",
+    public static final Block BAOBAB_LEAVES = registerBlock("baobab_leaves",
             new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).strength(4f).nonOpaque()));
-
+/*
     public static final Block CHESTNUT_SAPLING = registerBlock("chestnut_sapling",
             new SaplingBlock(ModSaplingGenerators.CHESTNUT, FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
 */
