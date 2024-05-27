@@ -17,21 +17,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.STRIPPED_BAOBAB_LOG);
         addDrop(ModBlocks.STRIPPED_BAOBAB_WOOD);
         addDrop(ModBlocks.BAOBAB_PLANKS);
-        /*
-        addDrop(ModBlocks.CHESTNUT_SAPLING);
+        addDrop(ModBlocks.BAOBAB_SAPLING);
 
-        addDrop(ModBlocks.CHESTNUT_LEAVES, leavesDrops(ModBlocks.CHESTNUT_LEAVES, ModBlocks.CHESTNUT_SAPLING, 0.0025f)); // TODO
-         */
+        addDrop(ModBlocks.BAOBAB_LEAVES, leavesDrops(ModBlocks.BAOBAB_LEAVES, ModBlocks.BAOBAB_SAPLING, 0.0025f));
     }
-    /*
-    public LootTable.Builder copperLikeOreDrops(Block drop, Item item) {
-        return BlockLootTableGenerator.dropsWithSilkTouch(drop, (LootPoolEntry.Builder)this.applyExplosionDecay(drop,
-                ((LeafEntry.Builder)
-                        ItemEntry.builder(item)
-                                .apply(SetCountLootFunction
-                                        .builder(UniformLootNumberProvider
-                                                .create(2.0f, 5.0f))))
-                        .apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE))));
-    }
-    */
 }

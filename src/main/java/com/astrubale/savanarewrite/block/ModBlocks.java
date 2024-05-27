@@ -1,6 +1,7 @@
 package com.astrubale.savanarewrite.block;
 
 import com.astrubale.savanarewrite.SavanaRewrite;
+import com.astrubale.savanarewrite.world.tree.ModSaplingGenerators;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -25,10 +26,9 @@ public class ModBlocks {
             new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).strength(4f)));
     public static final Block BAOBAB_LEAVES = registerBlock("baobab_leaves",
             new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).strength(4f).nonOpaque()));
-/*
-    public static final Block CHESTNUT_SAPLING = registerBlock("chestnut_sapling",
-            new SaplingBlock(ModSaplingGenerators.CHESTNUT, FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
-*/
+    public static final Block BAOBAB_SAPLING = registerBlock("baobab_sapling",
+            new SaplingBlock(ModSaplingGenerators.BAOBAB, FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
+
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(SavanaRewrite.MOD_ID, name), block);

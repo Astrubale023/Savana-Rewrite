@@ -1,6 +1,8 @@
-// 1.20.4	2024-05-27T16:25:46.1315828	Savana Rewrite/Block Loot Tables
+// 1.20.4	2024-05-27T18:52:22.2905735	Savana Rewrite/Block Loot Tables
 1ee9b70643a56dd5746aed2d4c783a6d728f9893 data\savanarewrite\loot_tables\blocks\baobab_planks.json
+cb0730286663fec9c1f3f24db5df471f10b7a1de data\savanarewrite\loot_tables\blocks\baobab_sapling.json
 e5d4cd7061624ca2dfdd7fcbb1694950f1289fdc data\savanarewrite\loot_tables\blocks\stripped_baobab_log.json
+f381830c886894343e61fee92377625c2e16c7e7 data\savanarewrite\loot_tables\blocks\baobab_leaves.json
 1307b356866766d0701f22f49191541967d553d6 data\savanarewrite\loot_tables\blocks\baobab_log.json
 e573372a8e19ffe06acaa89d19beeceeefc84390 data\savanarewrite\loot_tables\blocks\baobab_wood.json
 155227d02c29fb773b15131331ab2b34f4aa2d1d data\savanarewrite\loot_tables\blocks\stripped_baobab_wood.json
