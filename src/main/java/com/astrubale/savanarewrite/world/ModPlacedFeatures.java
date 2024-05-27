@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ModPlacedFeatures {
 
-    public static final RegistryKey<PlacedFeature> BAOBAB_PLACED_KEY = registerKey("chestnut_placed");
+    public static final RegistryKey<PlacedFeature> BAOBAB_PLACED_KEY = registerKey("baobab_placed");
 
     public static void boostrap(Registerable<PlacedFeature> context) {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);

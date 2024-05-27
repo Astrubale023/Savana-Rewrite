@@ -1,12 +1,12 @@
-// 1.20.4	2024-05-27T18:59:55.5447341	Savana Rewrite/Model Definitions
+// 1.20.4	2024-05-27T19:17:13.5406682	Savana Rewrite/Model Definitions
 c96693e8607e85bf08fed2bdc046d32a979c690f assets\savanarewrite\models\item\baobab_leaves.json
-7e19cff85bbcbd6121bf0e56ff7253d59fdad6d0 assets\savanarewrite\models\block\baobab_planks.json
 efbe41830745d96dcf59b7977811e8bbccc2bb1b assets\savanarewrite\models\block\baobab_log.json
+7e19cff85bbcbd6121bf0e56ff7253d59fdad6d0 assets\savanarewrite\models\block\baobab_planks.json
 9bb213e4e1ba3ab2b2bb9838bda455d6684635c5 assets\savanarewrite\models\block\baobab_log_horizontal.json
 a429d12fff474239b8183d6a42b8cfad4a682a25 assets\savanarewrite\blockstates\stripped_baobab_log.json
 31d37804c8a0a60097def2eebe24b31dd8c6233c assets\savanarewrite\models\block\baobab_wood.json
-f6790a7488a3c421ceb75c95b2e021dbc0120f47 assets\savanarewrite\models\item\stripped_baobab_wood.json
 0af21f78f3d71962e862c707fab2dc9bf8252e28 assets\savanarewrite\models\block\stripped_baobab_log_horizontal.json
+f6790a7488a3c421ceb75c95b2e021dbc0120f47 assets\savanarewrite\models\item\stripped_baobab_wood.json
 8bd8326441172308e33d74e1007b499e33510c09 assets\savanarewrite\models\block\baobab_leaves.json
 b9f7e22f57a66579bb830f49c84fd56fcf408a6d assets\savanarewrite\models\item\stripped_baobab_log.json
 75a25fe13e9d83d056468394c927242efd77b588 assets\savanarewrite\models\item\baobab_planks.json
