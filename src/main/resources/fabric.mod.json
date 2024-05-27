@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "savanar",
+	"id": "savanarewrite",
 	"version": "${version}",
 	"name": "Savana Rewrite",
 	"description": "A fabric mod to give new life to savana biome",
@@ -12,7 +12,7 @@
 		"sources": "https://github.com/Astrubale023/Savana-Rewrite"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/savanar/icon.png",
+	"icon": "assets/savanarewrite/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
