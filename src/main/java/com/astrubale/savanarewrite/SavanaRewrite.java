@@ -2,6 +2,7 @@ package com.astrubale.savanarewrite;
 
 import com.astrubale.savanarewrite.block.ModBlocks;
 import com.astrubale.savanarewrite.item.ModItemGroups;
+import com.astrubale.savanarewrite.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -26,6 +27,8 @@ public class SavanaRewrite implements ModInitializer {
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_BAOBAB_LOG, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_BAOBAB_WOOD, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.BAOBAB_PLANKS, 5, 20);
+
+		ModWorldGeneration.generateModWorldGen();
 
 		LOGGER.info("Hello Fabric world!");
 	}
