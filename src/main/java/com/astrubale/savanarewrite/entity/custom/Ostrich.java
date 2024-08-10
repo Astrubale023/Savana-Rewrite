@@ -1,0 +1,87 @@
+package com.astrubale.savanarewrite.entity.custom;
+
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EntityView;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.GeckoLib;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
+
+public class Ostrich extends TameableEntity implements GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+
+    public Ostrich(EntityType<? extends TameableEntity> entityType, World world) {
+        super(entityType, world);
+    }
+
+    @Nullable
+    @Override
+    public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+        return null;
+    }
+
+    // ATTRIBUTES
+    public static DefaultAttributeContainer.Builder setAttribute() {
+        return AnimalEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0f)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 2.0f)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f);
+    }
+
+    // ANIMATIONS
+    private <E extends GeoEntity> PlayState predicate(AnimationState<E> event) {
+
+        event.getController().setAnimation(RawAnimation.begin().thenLoop("ostrich.animation.idle"));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
+    }
+
+    // SOUNDS
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {return SoundEvents.ENTITY_PARROT_AMBIENT;}
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {return SoundEvents.ENTITY_DOLPHIN_HURT;}
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {return SoundEvents.ENTITY_PARROT_DEATH;}
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {
+        this.playSound(SoundEvents.ENTITY_CAMEL_STEP, 0.15f, 1.0f);
+    }
+
+    // GECKOLIB THINGS
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.geoCache;
+    }
+
+    @Override
+    public EntityView method_48926() {
+        return this.getWorld();
+    }
+}
