@@ -2,12 +2,14 @@ package com.astrubale.savanarewrite.entity.custom;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -15,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.GeckoLib;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -38,7 +39,7 @@ public class Ostrich extends TameableEntity implements GeoEntity {
         return null;
     }
 
-    // ATTRIBUTES
+    /* ATTRIBUTES */
     public static DefaultAttributeContainer.Builder setAttribute() {
         return AnimalEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20)
@@ -47,7 +48,18 @@ public class Ostrich extends TameableEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f);
     }
 
-    // ANIMATIONS
+    /* GOALS */
+    protected void initGoals() {
+        this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(3, new WanderAroundPointOfInterestGoal(this, 0.75, false));
+        this.goalSelector.add(4, new WanderAroundFarGoal(this, 0.75, 0.5f));
+        this.goalSelector.add(5, new LookAroundGoal(this));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
+
+        this.goalSelector.add(1, new AnimalMateGoal(this,1.0));
+    }
+
+    /* ANIMATIONS */
     private <E extends GeoEntity> PlayState predicate(AnimationState<E> event) {
 
         event.getController().setAnimation(RawAnimation.begin().thenLoop("ostrich.animation.idle"));
@@ -59,7 +71,7 @@ public class Ostrich extends TameableEntity implements GeoEntity {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
-    // SOUNDS
+    /* SOUNDS */
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {return SoundEvents.ENTITY_PARROT_AMBIENT;}
@@ -74,7 +86,7 @@ public class Ostrich extends TameableEntity implements GeoEntity {
         this.playSound(SoundEvents.ENTITY_CAMEL_STEP, 0.15f, 1.0f);
     }
 
-    // GECKOLIB THINGS
+    /* GECKOLIB THINGS */
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.geoCache;
