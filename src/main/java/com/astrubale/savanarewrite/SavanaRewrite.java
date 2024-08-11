@@ -2,6 +2,7 @@ package com.astrubale.savanarewrite;
 
 import com.astrubale.savanarewrite.block.ModBlocks;
 import com.astrubale.savanarewrite.item.ModItemGroups;
+import com.astrubale.savanarewrite.item.ModItems;
 import com.astrubale.savanarewrite.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
@@ -17,6 +18,7 @@ public class SavanaRewrite implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItemGroups.registerItemGroups();
+		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 
 		StrippableBlockRegistry.register(ModBlocks.BAOBAB_LOG, ModBlocks.STRIPPED_BAOBAB_LOG);

@@ -16,6 +16,8 @@ public class ModItemGroups {
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.savanarewrite"))
                     .icon(() -> new ItemStack(ModBlocks.BAOBAB_LOG.asItem())).entries((displayContext, entries) -> {
 
+                        entries.add(ModItems.GLIDER);
+
                         entries.add(ModBlocks.BAOBAB_LOG);
                         entries.add(ModBlocks.BAOBAB_WOOD);
                         entries.add(ModBlocks.STRIPPED_BAOBAB_LOG);
@@ -23,7 +25,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.BAOBAB_PLANKS);
                         entries.add(ModBlocks.BAOBAB_LEAVES);
                         entries.add(ModBlocks.BAOBAB_SAPLING);
-
 
                     }).build());
 
