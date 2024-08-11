@@ -2,6 +2,7 @@ package com.astrubale.savanarewrite.entity.custom;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -10,6 +11,8 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -84,6 +87,17 @@ public class Ostrich extends TameableEntity implements GeoEntity {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
         this.playSound(SoundEvents.ENTITY_CAMEL_STEP, 0.15f, 1.0f);
+    }
+
+    @Override
+    public void onDeath(DamageSource damageSource) {
+        this.dropItem(Items.FEATHER);
+    }
+
+    @Nullable
+    @Override
+    public ItemEntity dropItem(ItemConvertible item) {
+        return super.dropItem(item);
     }
 
     /* GECKOLIB THINGS */
