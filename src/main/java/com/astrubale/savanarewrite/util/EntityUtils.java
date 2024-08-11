@@ -9,7 +9,9 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +40,17 @@ public class EntityUtils {
         if (state.getBlock() instanceof FarmlandBlock block && !state.isIn(INVALID_BONEMEAL_TARGETS)) {
             if (block.canPlaceAt(state, world, pos)) {
                 if (world instanceof ServerWorld) {
-                    //return block.isBonemealSuccess(world, world.random, pos, state);
+                    return isBonemealSuccess(((ServerWorld) world).toServerWorld(), world.random, pos, state);
                 }
             }
         }
         return false;
+    }
+
+    private static boolean isBonemealSuccess(@NotNull ServerWorld world, @NotNull Random random, @NotNull BlockPos pos, @NotNull BlockState state) {
+        return world.random.nextFloat() < 0.45;
+    }
+
+    public void performBonemeal(ServerWorld world, BlockPos pos) {
     }
 }
