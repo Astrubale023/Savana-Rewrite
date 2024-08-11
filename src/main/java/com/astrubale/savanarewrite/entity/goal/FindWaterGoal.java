@@ -36,17 +36,17 @@ public class FindWaterGoal extends Goal {
     }
 
     @Override
-    public boolean shouldContinue() {
-        return targetPosition != null && targetPosition.getSquaredDistance(elephanty.getBlockPos()) > 1;
-    }
-
-    @Override
     public void start() {
         super.start();
         if(targetPosition != null) {
             EntityNavigation nav = elephanty.getNavigation();
             nav.startMovingTo(targetPosition.getX() + 0.5, targetPosition.getY() + 0.75, targetPosition.getZ() + 0.5, 0.3);
         }
+    }
+
+    @Override
+    public boolean shouldContinue() {
+        return targetPosition != null && targetPosition.getSquaredDistance(elephanty.getBlockPos()) > 1;
     }
 
     @Override
@@ -60,6 +60,7 @@ public class FindWaterGoal extends Goal {
         if(targetPosition != null) return;
         BlockPos.Mutable waterPos = elephanty.getBlockPos().mutableCopy();
         for (BlockPos blockPos : POSITIONAL_OFFSET){
+            //prossima stringa potrebbe essere molto diversa dall'originale
             waterPos.offset(elephanty.getMovementDirection(), (int) blockPos.getSquaredDistance(elephanty.getBlockPos()));
             if (this.elephanty.getWorld().isWater(waterPos)){
                 Path path = elephanty.getNavigation().findPathTo(waterPos, 1);
