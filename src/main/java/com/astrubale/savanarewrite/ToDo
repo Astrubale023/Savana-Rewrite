@@ -1,0 +1,2 @@
+The Elephanty can be remade into sprout water for just one target at a time. This should simplify the code.
+Use something like .isMature to know which fertilizable block should be sparied. And move all the goals in the elephanty class.

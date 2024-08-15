@@ -4,6 +4,7 @@ import com.astrubale.savanarewrite.SavanaRewrite;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
@@ -37,19 +38,21 @@ public class EntityUtils {
 
     public static boolean validBoneMealTarget(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
-        if (state.getBlock() instanceof FarmlandBlock block && !state.isIn(INVALID_BONEMEAL_TARGETS)) {
-            if (block.canPlaceAt(state, world, pos)) {
+        if (state.getBlock() instanceof Fertilizable block && !state.isIn(INVALID_BONEMEAL_TARGETS)) {
+            if (block.isFertilizable(world, pos, state)) {
                 if (world instanceof ServerWorld) {
-                    return isBonemealSuccess(((ServerWorld) world).toServerWorld(), world.random, pos, state);
+                    return block.canGrow(((ServerWorld)world).toServerWorld(), world.random, pos, state);
                 }
             }
         }
         return false;
     }
 
+    /*
     private static boolean isBonemealSuccess(@NotNull ServerWorld world, @NotNull Random random, @NotNull BlockPos pos, @NotNull BlockState state) {
         return world.random.nextFloat() < 0.45;
     }
+    */
 
     public void performBonemeal(ServerWorld world, BlockPos pos) {
     }
