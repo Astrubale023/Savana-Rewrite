@@ -24,6 +24,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.BAOBAB_LEAVES);
                         entries.add(ModBlocks.BAOBAB_SAPLING);
 
+                        entries.add(ModItems.GLIDER);
 
                     }).build());
 
