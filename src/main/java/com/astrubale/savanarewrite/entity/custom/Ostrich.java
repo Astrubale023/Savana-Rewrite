@@ -28,6 +28,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import com.astrubale.savanarewrite.item.ModItems;
 
 public class Ostrich extends TameableEntity implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -91,7 +92,13 @@ public class Ostrich extends TameableEntity implements GeoEntity {
 
     @Override
     public void onDeath(DamageSource damageSource) {
-        this.dropItem(Items.FEATHER);
+        super.onDeath(damageSource);
+
+        if (!this.getWorld().isClient() && damageSource.getAttacker() instanceof PlayerEntity) {
+            if(this.random.nextFloat() < 0.2) {
+                this.dropItem(ModItems.GREAT_FEATHER, this.random.nextInt(2) + 1); // Drop da 1 a 2 piume
+            }
+        }
     }
 
     @Nullable
