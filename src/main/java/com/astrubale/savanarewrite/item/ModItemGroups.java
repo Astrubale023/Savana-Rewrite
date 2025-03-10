@@ -24,9 +24,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.BAOBAB_LEAVES);
                         entries.add(ModBlocks.BAOBAB_SAPLING);
 
-                        entries.add(ModItems.GREAT_FEATHER);
-
                         entries.add(ModItems.GLIDER);
+                        entries.add(ModItems.GREAT_FEATHER);
+                        entries.add(ModItems.OSTRICH_SPAWN_EGG);
 
                     }).build());
 
