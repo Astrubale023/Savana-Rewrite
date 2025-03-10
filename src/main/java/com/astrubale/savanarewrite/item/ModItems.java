@@ -15,13 +15,13 @@ public class ModItems {
     public static final Item GLIDER = registerItem("glider",
             new GliderItem(new FabricItemSettings().maxCount(1)));
 
+    public static final Item GREAT_FEATHER = registerItem("great_feather", new Item(new FabricItemSettings()));
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(SavanaRewrite.MOD_ID, name), item);
     }
 
     public static void registerModItems() {
         SavanaRewrite.LOGGER.info("Registering Mod Items for " + SavanaRewrite.MOD_ID);
-
-        //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemsToIngredientItemGroup);
     }
 }

@@ -34,7 +34,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.GLIDER, 1)
                 .pattern("FFF")
                 .pattern("S S")
-                .input('F', Items.FEATHER)
+                .input('F', ModItems.GREAT_FEATHER)
                 .input('S', Items.STICK)
                 .criterion(hasItem(Items.FEATHER), conditionsFromItem(Items.FEATHER))
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
