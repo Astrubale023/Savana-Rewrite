@@ -36,7 +36,6 @@ public class SavanaRewrite implements ModInitializer {
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_BAOBAB_WOOD, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.BAOBAB_PLANKS, 5, 20);
 
-		EntityRendererRegistry.register(ModEntities.OSTRICH, OstrichRenderer::new);
 		FabricDefaultAttributeRegistry.register(ModEntities.OSTRICH, Ostrich.setAttribute());
 
 		ModWorldGeneration.generateModWorldGen();
