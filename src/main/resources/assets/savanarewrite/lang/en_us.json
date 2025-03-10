@@ -9,5 +9,7 @@
 
   "block.savanarewrite.baobab_leaves": "Baobab Leaves",
 
-  "block.savanarewrite.baobab_sapling": "Baobab Sapling"
+  "block.savanarewrite.baobab_sapling": "Baobab Sapling",
+
+  "item.savanarewrite.glider" : "Glider"
 }

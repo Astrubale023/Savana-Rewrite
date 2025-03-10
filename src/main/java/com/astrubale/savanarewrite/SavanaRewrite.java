@@ -5,6 +5,7 @@ import com.astrubale.savanarewrite.entity.ModEntities;
 import com.astrubale.savanarewrite.entity.client.renderer.OstrichRenderer;
 import com.astrubale.savanarewrite.entity.custom.Ostrich;
 import com.astrubale.savanarewrite.item.ModItemGroups;
+import com.astrubale.savanarewrite.item.ModItems;
 import com.astrubale.savanarewrite.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
@@ -23,6 +24,7 @@ public class SavanaRewrite implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
 		ModBlocks.registerModBlocks();
 
