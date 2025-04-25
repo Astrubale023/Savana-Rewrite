@@ -15,6 +15,6 @@ public class OstrichRenderer extends GeoEntityRenderer<Ostrich> {
 
     @Override
     public Identifier getTextureLocation(Ostrich animatable) {
-        return new Identifier(SavanaRewrite.MOD_ID, "textures/entity/ostrich/ostrich.png");
+        return new Identifier(SavanaRewrite.MOD_ID, "textures/entity/ostrich/ostrich2.png");
     }
 }
