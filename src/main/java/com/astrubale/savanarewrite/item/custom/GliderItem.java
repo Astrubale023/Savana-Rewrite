@@ -22,11 +22,15 @@ public class GliderItem extends Item {
         ItemStack stack = user.getStackInHand(hand);
         NbtCompound nbt = stack.getOrCreateNbt();
 
-        boolean isActive = !nbt.getBoolean("isActive");
+        boolean isActive = nbt.getBoolean("isActive");
 
         if (!user.isOnGround() && user.getVelocity().y < 0) { // Permette di attivarlo solo se il giocatore sta cadendo
-            nbt.putBoolean("isActive", isActive);
-            user.sendMessage(Text.of(isActive ? "Deltaplano attivato!" : "Deltaplano disattivato!"), true);
+            nbt.putBoolean("isActive", !isActive);
+            user.sendMessage(Text.of(!isActive ? "Deltaplano attivato!" : "Deltaplano disattivato!"), true);
+        }
+        if(user.isOnGround() && isActive) {
+            nbt.putBoolean("isActive", false);
+            user.sendMessage(Text.of(!isActive ? "Deltaplano attivato!" : "Deltaplano disattivato!"), true);
         }
 
         return new TypedActionResult<>(ActionResult.SUCCESS, stack);
@@ -38,9 +42,14 @@ public class GliderItem extends Item {
             NbtCompound nbt = stack.getOrCreateNbt();
             boolean isActive = nbt.getBoolean("isActive");
 
-            if (isActive && !player.isOnGround()) {
-                player.setVelocity(player.getVelocity().x, Math.max(player.getVelocity().y * 0.9, -0.6), player.getVelocity().z);
-                player.fallDistance = 0; // Evita danni da caduta
+            if (isActive) {
+                if(!player.isOnGround()) {
+                    player.setVelocity(player.getVelocity().x, Math.max(player.getVelocity().y * 0.76, -0.6), player.getVelocity().z);
+                    player.fallDistance = 0; // Evita danni da caduta
+                }
+                else {
+
+                }
             }
         }
     }
