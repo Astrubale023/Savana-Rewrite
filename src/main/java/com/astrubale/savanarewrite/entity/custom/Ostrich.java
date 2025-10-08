@@ -7,10 +7,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.HorseEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
@@ -31,10 +28,10 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import com.astrubale.savanarewrite.item.ModItems;
 
-public class Ostrich extends TameableEntity implements GeoEntity {
+public class Ostrich extends AbstractHorseEntity implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
-    public Ostrich(EntityType<? extends TameableEntity> entityType, World world) {
+    public Ostrich(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
     }
 

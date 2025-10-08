@@ -1,3 +1,6 @@
+# Struzzo
+- Implementare la sella e la cavalcabilità
+
 # Taiwan Lion Boss
 ## Attacchi:
 - Zampata (copre area in altezza, ma raggio corto, buon contraccolpo)
