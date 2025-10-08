@@ -1,15 +1,29 @@
 package com.astrubale.savanarewrite.entity.custom;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class TaiwanLionBossEntity extends HostileEntity {
+public class TaiwanLionBoss extends HostileEntity implements GeoEntity {
+
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
     private enum BossPhase {
         PHASE_ONE,
@@ -26,9 +40,17 @@ public class TaiwanLionBossEntity extends HostileEntity {
     private BossPhase currentPhase = BossPhase.PHASE_ONE;
     private int specialAttackCooldown = 0;
 
-    protected TaiwanLionBossEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public TaiwanLionBoss(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
         this.experiencePoints = 50;
+    }
+
+    public static DefaultAttributeContainer.Builder setAttribute() {
+        return AnimalEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 80)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0f)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 2.0f)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f);
     }
 
     @Override
@@ -103,7 +125,7 @@ public class TaiwanLionBossEntity extends HostileEntity {
     private void enterFinalPhase() {
         currentPhase = BossPhase.FINAL_FORM;
 
-        this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(0.35);
+        // this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(0.35);
         this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(300.0);
         this.setHealth(300.0F);
 
@@ -126,5 +148,23 @@ public class TaiwanLionBossEntity extends HostileEntity {
 
     public ServerBossBar getBossBar() {
         return bossBar;
+    }
+
+    /* ANIMATIONS */
+    private <E extends GeoEntity> PlayState predicate(AnimationState<E> event) {
+
+        event.getController().setAnimation(RawAnimation.begin().thenLoop("taiwan_lion.animation.idle"));
+        return PlayState.CONTINUE;
+    }
+
+    /* GECKOLIB */
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.geoCache;
     }
 }

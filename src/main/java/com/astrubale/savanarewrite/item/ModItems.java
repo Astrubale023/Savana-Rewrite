@@ -2,12 +2,9 @@ package com.astrubale.savanarewrite.item;
 
 import com.astrubale.savanarewrite.SavanaRewrite;
 import com.astrubale.savanarewrite.entity.ModEntities;
-import com.astrubale.savanarewrite.entity.custom.Ostrich;
 import com.astrubale.savanarewrite.item.custom.GliderItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

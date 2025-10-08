@@ -1,0 +1,46 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"taiwanLion.animation.idle": {
+			"animation_length": 1.5,
+			"bones": {
+				"body": {
+					"rotation": {
+						"0.25": {
+							"vector": [0, 10.5, 0]
+						},
+						"0.75": {
+							"vector": [0, -17, 0]
+						},
+						"1.25": {
+							"vector": [0, 3, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 2, 0]
+						},
+						"1.0": {
+							"vector": [0, -2, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"scale": {
+						"0.4167": {
+							"vector": [1.2, 1.2, 1.2]
+						},
+						"1.1667": {
+							"vector": [0.8, 0.8, 0.8]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}
