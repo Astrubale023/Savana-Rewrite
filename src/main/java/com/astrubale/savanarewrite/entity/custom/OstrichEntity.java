@@ -10,9 +10,14 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
@@ -27,8 +32,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import com.astrubale.savanarewrite.item.ModItems;
 
-public class OstrichEntity extends AbstractHorseEntity implements GeoEntity {
-    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+public class OstrichEntity extends AbstractHorseEntity {
 
     public OstrichEntity(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
@@ -46,31 +50,23 @@ public class OstrichEntity extends AbstractHorseEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0f)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 2.0f)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f);
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5f)
+                .add(EntityAttributes.HORSE_JUMP_STRENGTH, 0.5f);
     }
 
     /* GOALS */
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(3, new WanderAroundPointOfInterestGoal(this, 0.75, false));
-        this.goalSelector.add(4, new WanderAroundFarGoal(this, 0.75, 0.5f));
-        this.goalSelector.add(5, new LookAroundGoal(this));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
-
-        this.goalSelector.add(1, new AnimalMateGoal(this,1.0));
+        this.goalSelector.add(1, new EscapeDangerGoal(this, 1.2D));
+        this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
+        this.goalSelector.add(3, new TemptGoal(this, 1.0D, Ingredient.ofItems(Items.WHEAT_SEEDS), false));
+        this.goalSelector.add(4, new FollowParentGoal(this, 1.0D));
+        this.goalSelector.add(5, new WanderAroundGoal(this, 0.7D));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(7, new LookAroundGoal(this));
     }
 
     /* ANIMATIONS */
-    private <E extends GeoEntity> PlayState predicate(AnimationState<E> event) {
-
-        event.getController().setAnimation(RawAnimation.begin().thenLoop("ostrich.animation.idle"));
-        return PlayState.CONTINUE;
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
-    }
 
     /* SOUNDS */
     @Nullable
@@ -88,6 +84,47 @@ public class OstrichEntity extends AbstractHorseEntity implements GeoEntity {
     }
 
     @Override
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+        boolean bl = !this.isBaby() && this.isTame() && player.shouldCancelInteraction();
+        if(this.hasPassengers() || bl) {
+            return super.interactMob(player, hand);
+        }
+
+        ItemStack itemStack = player.getStackInHand(hand);
+        if(!itemStack.isEmpty()) {
+            if(this.isBreedingItem(itemStack)) {
+                return interactHorse(player, itemStack);
+            }
+
+            if(!this.isTame()) {
+                this.playAngrySound();
+                return ActionResult.success(this.getWorld().isClient());
+            }
+        }
+
+        return super.interactMob(player, hand);
+    }
+
+    @Override
+    public void tickMovement() {
+        super.tickMovement();
+
+        if (this.isAlive() && this.hasPassengers() && this.getFirstPassenger() instanceof PlayerEntity player) {
+            if (!this.isTame()) {
+                if (this.getTemper() > 67 && this.random.nextInt(200)==0) {
+                    this.setOwnerUuid(player.getUuid());
+                    this.setTame(true);
+                    this.getWorld().sendEntityStatus(this, (byte)7);
+                }
+                if (this.random.nextInt(400) == 0) {
+                    player.stopRiding();
+                    this.getWorld().sendEntityStatus(this, (byte)6);
+                }
+            }
+        }
+    }
+
+    @Override
     public void onDeath(DamageSource damageSource) {
         super.onDeath(damageSource);
 
@@ -102,12 +139,6 @@ public class OstrichEntity extends AbstractHorseEntity implements GeoEntity {
     @Override
     public ItemEntity dropItem(ItemConvertible item) {
         return super.dropItem(item);
-    }
-
-    /* GECKOLIB THINGS */
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.geoCache;
     }
 
     @Override
