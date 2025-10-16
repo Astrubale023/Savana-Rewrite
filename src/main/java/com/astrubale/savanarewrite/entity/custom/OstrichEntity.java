@@ -111,7 +111,7 @@ public class OstrichEntity extends AbstractHorseEntity {
 
         if (this.isAlive() && this.hasPassengers() && this.getFirstPassenger() instanceof PlayerEntity player) {
             if (!this.isTame()) {
-                if (this.getTemper() > 67 && this.random.nextInt(200)==0) {
+                if (this.random.nextInt(200 - this.getTemper())==0) {
                     this.setOwnerUuid(player.getUuid());
                     this.setTame(true);
                     this.getWorld().sendEntityStatus(this, (byte)7);
