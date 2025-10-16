@@ -1,6 +1,7 @@
 package com.astrubale.savanarewrite;
 
 import com.astrubale.savanarewrite.block.ModBlocks;
+import com.astrubale.savanarewrite.client.ModKeyBinding;
 import com.astrubale.savanarewrite.entity.ModEntities;
 import com.astrubale.savanarewrite.entity.custom.OstrichEntity;
 import com.astrubale.savanarewrite.entity.custom.TaiwanLionBoss;
