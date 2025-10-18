@@ -34,8 +34,11 @@ import com.astrubale.savanarewrite.item.ModItems;
 
 public class OstrichEntity extends AbstractHorseEntity {
 
+    boolean galloping;
+
     public OstrichEntity(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
+        this.galloping = false;
     }
 
     @Nullable
@@ -44,13 +47,22 @@ public class OstrichEntity extends AbstractHorseEntity {
         return null;
     }
 
+    public void setGallop(boolean galloping) {
+        this.galloping = galloping;
+        if (galloping) {
+            this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+                    .setBaseValue(0.6f);
+        } else {
+            this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+                    .setBaseValue(0.3f);
+        }
+    }
+
     /* ATTRIBUTES */
     public static DefaultAttributeContainer.Builder setAttribute() {
         return AnimalEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0f)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 2.0f)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5f)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f)
                 .add(EntityAttributes.HORSE_JUMP_STRENGTH, 0.5f);
     }
 

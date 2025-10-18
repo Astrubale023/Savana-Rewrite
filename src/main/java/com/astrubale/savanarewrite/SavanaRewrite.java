@@ -7,6 +7,7 @@ import com.astrubale.savanarewrite.entity.custom.OstrichEntity;
 import com.astrubale.savanarewrite.entity.custom.TaiwanLionBoss;
 import com.astrubale.savanarewrite.item.ModItemGroups;
 import com.astrubale.savanarewrite.item.ModItems;
+import com.astrubale.savanarewrite.network.ModNetworking;
 import com.astrubale.savanarewrite.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
@@ -25,6 +26,7 @@ public class SavanaRewrite implements ModInitializer {
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
 		ModBlocks.registerModBlocks();
+        ModNetworking.RegisterC2SPacket();
 
 		StrippableBlockRegistry.register(ModBlocks.BAOBAB_LOG, ModBlocks.STRIPPED_BAOBAB_LOG);
 		StrippableBlockRegistry.register(ModBlocks.BAOBAB_WOOD, ModBlocks.STRIPPED_BAOBAB_WOOD);
