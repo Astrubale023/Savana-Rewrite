@@ -3,6 +3,7 @@ package com.astrubale.savanarewrite.network;
 import com.astrubale.savanarewrite.SavanaRewrite;
 import com.astrubale.savanarewrite.entity.custom.OstrichEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 
 public class ModNetworking {
@@ -18,13 +19,28 @@ public class ModNetworking {
                     if (bl) {
                         if (player.hasVehicle()) {
                             System.out.println("[server] Gallop start");
+                            Entity isOstrich = player.getVehicle();
+                            if (isOstrich instanceof OstrichEntity) {
+                                OstrichEntity ostrich = (OstrichEntity) player.getVehicle();
+                                ostrich.setGallop(true);
+                            }
                         }
                         else {
                             System.out.println("[server] No vehicle found");
                         }
                     }
                     else {
-                        System.out.println("[server] Gallop stop");
+                        if (player.hasVehicle()) {
+                            System.out.println("[server] Gallop stop");
+                            Entity isOstrich = player.getVehicle();
+                            if (isOstrich instanceof OstrichEntity) {
+                                OstrichEntity ostrich = (OstrichEntity) player.getVehicle();
+                                ostrich.setGallop(false);
+                            }
+                        }
+                        else {
+                            System.out.println("[server] No vehicle found");
+                        }
                     }
                 });
             });

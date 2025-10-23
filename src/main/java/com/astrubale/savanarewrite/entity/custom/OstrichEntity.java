@@ -51,10 +51,10 @@ public class OstrichEntity extends AbstractHorseEntity {
         this.galloping = galloping;
         if (galloping) {
             this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
-                    .setBaseValue(0.6f);
+                    .setBaseValue(0.7f);
         } else {
             this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
-                    .setBaseValue(0.3f);
+                    .setBaseValue(0.1f);
         }
     }
 
@@ -62,7 +62,7 @@ public class OstrichEntity extends AbstractHorseEntity {
     public static DefaultAttributeContainer.Builder setAttribute() {
         return AnimalEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1f)
                 .add(EntityAttributes.HORSE_JUMP_STRENGTH, 0.5f);
     }
 
