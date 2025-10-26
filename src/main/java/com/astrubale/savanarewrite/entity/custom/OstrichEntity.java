@@ -1,18 +1,23 @@
 package com.astrubale.savanarewrite.entity.custom;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -32,13 +37,20 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import com.astrubale.savanarewrite.item.ModItems;
 
+import javax.sound.midi.Track;
+
 public class OstrichEntity extends AbstractHorseEntity {
 
-    boolean galloping;
+    private static final TrackedData<Boolean> GALLOPING = DataTracker.registerData(OstrichEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public OstrichEntity(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
-        this.galloping = false;
+    }
+
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(GALLOPING, false);
     }
 
     @Nullable
@@ -48,7 +60,7 @@ public class OstrichEntity extends AbstractHorseEntity {
     }
 
     public void setGallop(boolean galloping) {
-        this.galloping = galloping;
+        this.dataTracker.set(GALLOPING, galloping);
         if (galloping) {
             this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
                     .setBaseValue(0.7f);
@@ -56,6 +68,10 @@ public class OstrichEntity extends AbstractHorseEntity {
             this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
                     .setBaseValue(0.1f);
         }
+    }
+
+    public boolean isGalloping() {
+        return this.dataTracker.get(GALLOPING);
     }
 
     /* ATTRIBUTES */
@@ -133,6 +149,15 @@ public class OstrichEntity extends AbstractHorseEntity {
                     this.getWorld().sendEntityStatus(this, (byte)6);
                 }
             }
+        }
+    }
+
+    @Override
+    protected void removePassenger(Entity passenger) {
+        super.removePassenger(passenger);
+
+        if(passenger instanceof ServerPlayerEntity) {
+            this.setGallop(false);
         }
     }
 

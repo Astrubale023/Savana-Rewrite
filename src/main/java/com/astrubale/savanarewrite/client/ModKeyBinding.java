@@ -8,16 +8,14 @@ import org.lwjgl.glfw.GLFW;
 
 public class ModKeyBinding {
 
-    public static KeyBinding GALLOP_KEY;
+    public static KeyBinding GALLOP_KEY = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            "key."+SavanaRewrite.MOD_ID+".gallop",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_G,
+            SavanaRewrite.MOD_ID+".category.controls"
+    ));
 
     public static void registerModKeyBindings() {
-        GALLOP_KEY = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                SavanaRewrite.MOD_ID + ".key.gallop",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_G,
-                SavanaRewrite.MOD_ID + ".category.controls"
-        ));
-
         SavanaRewrite.LOGGER.info("Registered key bindings for " + SavanaRewrite.MOD_ID);
     }
 }

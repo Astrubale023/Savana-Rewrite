@@ -1,6 +1,7 @@
 package com.astrubale.savanarewrite;
 
 import com.astrubale.savanarewrite.block.ModBlocks;
+import com.astrubale.savanarewrite.client.ClientInputHandler;
 import com.astrubale.savanarewrite.client.ModKeyBinding;
 import com.astrubale.savanarewrite.entity.ModEntities;
 import com.astrubale.savanarewrite.entity.client.model.OstrichModel;
@@ -26,20 +27,7 @@ public class SavanaRewriteClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModKeyBinding.registerModKeyBindings();
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            boolean isPressed = ModKeyBinding.GALLOP_KEY.isPressed();
-
-            if (isPressed && !wasGallopKeyPressed) {
-                System.out.println("[CLIENT] GALLOP START");
-                ClientPlayNetworking.send(ModNetworking.GALLOP_PACKET_ID, PacketByteBufs.create().writeBoolean(true));
-            } else if (!isPressed && wasGallopKeyPressed) {
-                System.out.println("[CLIENT] GALLOP STOP");
-                ClientPlayNetworking.send(ModNetworking.GALLOP_PACKET_ID, PacketByteBufs.create().writeBoolean(false));
-            }
-
-            wasGallopKeyPressed = isPressed;
-            // ClientPlayNetworking.send(ModNetworking.GALLOP_PACKET_ID, PacketByteBufs.empty());
-        });
+        ClientInputHandler.register();
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BAOBAB_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BAOBAB_SAPLING, RenderLayer.getCutout());
