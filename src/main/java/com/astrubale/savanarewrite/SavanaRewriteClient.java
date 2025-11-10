@@ -22,8 +22,6 @@ import net.minecraft.text.Text;
 
 public class SavanaRewriteClient implements ClientModInitializer {
 
-    private static boolean wasGallopKeyPressed = false;
-
     @Override
     public void onInitializeClient() {
         ModKeyBinding.registerModKeyBindings();

@@ -1,5 +1,6 @@
 package com.astrubale.savanarewrite.entity.custom;
 
+import com.astrubale.savanarewrite.SavanaRewrite;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -42,6 +43,10 @@ import javax.sound.midi.Track;
 public class OstrichEntity extends AbstractHorseEntity {
 
     private static final TrackedData<Boolean> GALLOPING = DataTracker.registerData(OstrichEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private int gallopTimer = 0;
+    private static final int gallopTimerMax = 100;
+    private int gallopCountdown = 0;
+    private static final int gallopCountdownMax = 500;
 
     public OstrichEntity(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
@@ -60,13 +65,18 @@ public class OstrichEntity extends AbstractHorseEntity {
     }
 
     public void setGallop(boolean galloping) {
+        if(galloping && (this.gallopTimer <= 0 || this.gallopCountdown > 0)) { return; }
+
         this.dataTracker.set(GALLOPING, galloping);
+
         if (galloping) {
             this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
                     .setBaseValue(0.7f);
+            SavanaRewrite.LOGGER.info("[Entity] Gallop Start");
         } else {
             this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
-                    .setBaseValue(0.1f);
+                    .setBaseValue(0.3f);
+            SavanaRewrite.LOGGER.info("[Entity] Gallop Stop");
         }
     }
 
@@ -74,11 +84,15 @@ public class OstrichEntity extends AbstractHorseEntity {
         return this.dataTracker.get(GALLOPING);
     }
 
+    public boolean canGallop() {
+        return this.gallopTimer > 0 && this.gallopCountdown <= 0;
+    }
+
     /* ATTRIBUTES */
     public static DefaultAttributeContainer.Builder setAttribute() {
         return AnimalEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1f)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f)
                 .add(EntityAttributes.HORSE_JUMP_STRENGTH, 0.5f);
     }
 
@@ -147,6 +161,23 @@ public class OstrichEntity extends AbstractHorseEntity {
                 if (this.random.nextInt(400) == 0) {
                     player.stopRiding();
                     this.getWorld().sendEntityStatus(this, (byte)6);
+                }
+            } else {
+                if (this.isGalloping()) {
+                    System.out.println("Ciao");
+                    if (gallopTimer > 0 && gallopCountdown > 0) {
+                        gallopTimer--;
+                        if(gallopTimer == 0) {
+                            gallopCountdown = gallopCountdownMax;
+                        }
+                    } else {
+                        this.setGallop(false);
+                    }
+                } else {
+                    gallopCountdown--;
+                    if(gallopCountdown == 0) {
+                        gallopTimer = gallopTimerMax;
+                    }
                 }
             }
         }

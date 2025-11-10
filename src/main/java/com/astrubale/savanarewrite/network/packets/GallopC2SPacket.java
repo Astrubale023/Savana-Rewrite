@@ -20,7 +20,7 @@ public class GallopC2SPacket implements ServerPlayNetworking.PlayChannelHandler 
 
         server.execute(() -> {
             if(player.hasVehicle() && player.getVehicle() instanceof OstrichEntity ostrich) {
-                ostrich.setGallop(true);
+                ostrich.setGallop(galloping);
                 System.out.println("[server] Gallop " + (galloping ? "start" : "stop"));
             } else {
                 System.out.println("[server] No vehicle found");
