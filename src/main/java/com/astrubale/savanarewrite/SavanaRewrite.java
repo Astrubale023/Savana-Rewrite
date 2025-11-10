@@ -4,7 +4,6 @@ import com.astrubale.savanarewrite.block.ModBlocks;
 import com.astrubale.savanarewrite.client.ModKeyBinding;
 import com.astrubale.savanarewrite.entity.ModEntities;
 import com.astrubale.savanarewrite.entity.custom.OstrichEntity;
-import com.astrubale.savanarewrite.entity.custom.TaiwanLionBoss;
 import com.astrubale.savanarewrite.item.ModItemGroups;
 import com.astrubale.savanarewrite.item.ModItems;
 import com.astrubale.savanarewrite.network.ModNetworking;
@@ -39,7 +38,6 @@ public class SavanaRewrite implements ModInitializer {
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.BAOBAB_PLANKS, 5, 20);
 
 		FabricDefaultAttributeRegistry.register(ModEntities.OSTRICH, OstrichEntity.setAttribute());
-		FabricDefaultAttributeRegistry.register(ModEntities.TAIWAN_LION_BOSS, TaiwanLionBoss.setAttribute());
 
 		ModWorldGeneration.generateModWorldGen();
 
